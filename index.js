@@ -1,22 +1,26 @@
 // Loading Screen Handler
 document.addEventListener("DOMContentLoaded", function() {
     const loadingScreen = document.getElementById("loadingScreen");
-    
-    // Auto hide after 3 seconds
-    setTimeout(() => {
-        if (loadingScreen) {
-            loadingScreen.style.display = "none";
-        }
-    }, 3000);
-    
-    // Hide when page fully loads
-    window.addEventListener("load", function() {
-        if (loadingScreen) {
-            loadingScreen.style.display = "none";
-        }
-    });
+    const MIN_LOADING_MS = 3000; 
+    const FADE_MS = 600;          
+    const startedAt = performance.now();
 
-    // ... rest of your existing code ...
+    const hideLoaderNow = () => {
+        if (loadingScreen) loadingScreen.style.display = "none";
+    };
+
+    // safety fallback in case 'load' never fires
+    const fallbackTimer = setTimeout(hideLoaderNow, MIN_LOADING_MS + FADE_MS + 1000);
+
+    window.addEventListener("load", function() {
+        const elapsed = performance.now() - startedAt;
+        const remaining = Math.max(0, MIN_LOADING_MS - elapsed);
+        // wait remaining visible time + fade time, then remove loader
+        setTimeout(() => {
+            hideLoaderNow();
+            clearTimeout(fallbackTimer);
+        }, remaining + FADE_MS);
+    });
 });
 
 
