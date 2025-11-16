@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+//contact me submit button
 document.addEventListener("DOMContentLoaded", function(){
       var el = document.querySelector(".button-bird");
       var text = document.querySelector(".button-bird__text");
@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
+
+//phone number contact me section
      (function () {
                 const form = document.getElementById('contactForm');
                 const countrySelect = document.getElementById('country-code');
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 const phoneHidden = document.getElementById('phone-hidden');
 
                 form.addEventListener('submit', function (e) {
-                    // Build final phone: remove + and spaces from display, avoid double code
+                    
                     const code = (countrySelect && countrySelect.value) ? countrySelect.value.toString().trim() : '';
                     const raw = (phoneDisplay && phoneDisplay.value) ? phoneDisplay.value.toString().trim() : '';
 
@@ -59,17 +61,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
                     phoneHidden.value = final ? ('+' + final) : '';
 
-                    // Remove any stray element with name="country-code" to be absolutely sure
-                    // (Some templates or browser tools may have injected one previously.)
+                    
                     const stray = form.querySelectorAll('[name="country-code"]');
                     stray.forEach(el => el.remove());
 
-                    // Also disable the select so it won't be submitted by any browser
+                   
                     if (countrySelect) countrySelect.disabled = true;
 
-                    // Allow normal submit to continue
+                    
                 });
-
-                // Optional: If you ever re-enable the form or repopulate, re-enable country select
-                // (Not necessary for most static pages.)
             })();
