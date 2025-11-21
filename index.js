@@ -174,6 +174,7 @@ function createMobileNav() {
     document.body.appendChild(mobileNav);
 }
 
+
 // ===================== PHONE NUMBER HANDLER =====================
 // (Keep your existing phone number code)
 

@@ -528,6 +528,7 @@ section {
         height: 45px;
         border-radius: 50%;
         border: 2px solid rgba(139, 227, 252, 0.5);
+        overflow: hidden;
     }
 
     .mobile-nav-header .name {
@@ -1969,6 +1970,7 @@ p {
 }
 
 /* ===================== MOBILE STYLES (≤ 768px) ===================== */
+
 @media (max-width: 768px) {
 
     /* Header & Navigation */
@@ -2341,7 +2343,7 @@ p {
 
     .card {
         gap: 15px;
-        margin-left: 2.5rem;
+        margin-left: auto;
     }
 }
 
@@ -2386,6 +2388,15 @@ p {
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav,
+    .mobile-nav-overlay {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
 }
 
