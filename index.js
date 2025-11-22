@@ -254,3 +254,13 @@ document.addEventListener("DOMContentLoaded", function(){
                     
                 });
             })();
+
+
+// skills marquee
+// document.addEventListener("DOMContentLoaded", () => {
+//     const list = document.querySelector(".slider .list");
+//     if (list) {
+//         const clone = list.cloneNode(true);
+//         list.parentElement.appendChild(clone);
+//     }
+// });
