@@ -187,9 +187,7 @@
 html,
 body {
     scroll-behavior: smooth;
-    /* smooth scrolling */
     -webkit-overflow-scrolling: touch;
-    /* smoother momentum scrolling on iOS */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #000000;
@@ -197,7 +195,6 @@ body {
 
 section {
     min-height: 100vh;
-    /* full page sections; use min-height to avoid mobile address-bar layout issues */
     /* padding: 40px; */
     box-sizing: border-box;
 }

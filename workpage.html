@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ================== DESIGN TOKENS ================== */
+        :root {
+            /* Layout + accents */
+            --bg: #05060d;
+            --sidebar-bg: rgba(10, 20, 40, 0.65);
+            --accent: #4b7bec;
+            --text-main: #d7d9e0;
+            --text-muted: #9aa4c6;
+            --border-soft: rgba(0, 140, 255, 0.25);
+            --radius-lg: 24px;
+
+            /* Card animation theme */
+            --first-color: hsl(82, 60%, 28%);
+            --title-color: #ffffff;
+            --text-color: #9aa4c6;
+            --container-color: rgba(10, 25, 45, 0.8);
+            --body-font: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --h2-font-size: 1.25rem;
+            --small-font-size: 0.813rem;
+        }
+
+        @media screen and (min-width: 1120px) {
+            :root {
+                --h2-font-size: 1.5rem;
+                --small-font-size: 0.875rem;
+            }
+        }
+
+        /* ================== BASE ================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--body-font);
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            color: var(--text-main);
+
+            /* Futuristic deep space gradient */
+            background: radial-gradient(circle at 20% 20%, #1a2340, #05060d 60%, #000000 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- STARS LAYER --- */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Tiny fast twinkling stars */
+        body::before {
+            background: url("./assests/imgs/starr1.png") repeat;
+            animation: stars-move 200s linear infinite;
+            opacity: 0.6;
+        }
+
+        /* Larger slower stars */
+        body::after {
+            background: url("./assests/imgs/star2.jpg");
+            /* animation: stars-move 320s linear infinite; */
+            opacity: 0.35;
+        }
+
+        @keyframes stars-move {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-2000px);
+            }
+        }
+
+        /* ================== APP SHELL ================== */
+        .app-shell {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 90vh;
+            background: rgba(10, 15, 30, 0.55);
+            display: flex;
+            border-radius: 32px;
+            box-shadow: 0 0 30px rgba(0, 140, 255, 0.25);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 140, 255, 0.2);
+        }
+
+        /* ---------- Sidebar ---------- */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-soft);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 20px;
+            gap: 32px;
+            color: #cfd3ff;
+        }
+
+        .sidebar-header {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .project-item {
+            cursor: pointer;
+            padding: 10px 12px;
+            border-radius: 16px;
+            transition: 0.2s;
+            color: #cfd3ff;
+        }
+
+        .project-item:hover {
+            background: rgba(0, 140, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .project-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .project-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ---------- Main area ---------- */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 24px 32px;
+            gap: 32px;
+        }
+
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main-title {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: Orbitron;
+        }
+
+        .main-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            outline: none;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #0047ff, #6b11ff);
+            color: #fff;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 0 12px rgba(0, 140, 255, 0.5);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 18px rgba(0, 140, 255, 0.7);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #9aa4c6;
+            border: 1px solid rgba(0, 140, 255, 0.3);
+            box-shadow: none;
+        }
+
+        /* ================== CARD ANIMATION (SPACE THEMED) ================== */
+
+        /* Grid that holds the animated cards */
+        .projects-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            align-content: flex-start;
+            padding-bottom: 24px;
+        }
+
+        .card__article {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            padding-bottom: 6px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 140, 255, 0.15);
+            transition: 0.3s;
+            /* background-color: #000000; */
+        }
+
+        .card__img {
+            width: 100%;
+            /* height: 100%; */
+            max-width: 348px;
+            border-radius: 20px;
+            margin-inline: auto;
+            display: block;
+            box-shadow: 0 0 25px rgba(0, 140, 255, 0.35);
+        }
+
+
+        .card__data {
+            width: 80%;
+            max-width: 316px;
+            background-color: var(--container-color);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
+            border-radius: 1rem;
+            position: absolute;
+            bottom: -9rem;
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            opacity: 0;
+            transition: opacity 1s 1s;
+            color: #cfd3ff;
+            border: 1px solid rgba(0, 140, 255, 0.2);
+            backdrop-filter: blur(12px);
+        }
+
+        .card__description {
+            display: block;
+            font-size: var(--small-font-size);
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+
+        .card__title {
+            font-size: var(--h2-font-size);
+            font-weight: 500;
+            color: var(--title-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .card__button {
+            text-decoration: none;
+            font-size: var(--small-font-size);
+            font-weight: 500;
+            color: #7db0ff;
+        }
+
+        .card__button:hover {
+            text-decoration: underline;
+        }
+
+        /* Hover animation behaviour */
+        .card__article:hover .card__data {
+            animation: show-data 1s forwards;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .card__article:hover {
+            animation: remove-overflow 2s forwards;
+            box-shadow: 0 0 28px rgba(0, 140, 255, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .card__article:not(:hover) {
+            animation: show-overflow 2s forwards;
+        }
+
+        .card__article:not(:hover) .card__data {
+            animation: remove-data 1s forwards;
+        }
+
+        /* Card animation keyframes */
+        @keyframes show-data {
+            50% {
+                transform: translateY(-10rem);
+            }
+
+            100% {
+                transform: translateY(-7rem);
+            }
+        }
+
+        @keyframes remove-overflow {
+            to {
+                overflow: initial;
+            }
+        }
+
+        @keyframes remove-data {
+            0% {
+                transform: translateY(-7rem);
+            }
+
+            50% {
+                transform: translateY(-10rem);
+            }
+
+            100% {
+                transform: translateY(0.5rem);
+            }
+        }
+
+        @keyframes show-overflow {
+            0% {
+                overflow: initial;
+                pointer-events: none;
+            }
+
+            50% {
+                overflow: hidden;
+            }
+        }
+
+        /* ================== RESPONSIVE ================== */
+        @media (max-width: 900px) {
+            .app-shell {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+            }
+
+            .project-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sidebar {
+                display: none;
+                /* hide sidebar on very small screens for simplicity */
+            }
+
+            .app-shell {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .main {
+                padding: 16px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Extra tiny screens tweak */
+        @media screen and (max-width: 340px) {
+            .card__data {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+
+        /* .project-item.active {
+            background: rgba(0, 140, 255, 0.25);
+            transform: translateX(4px);
+        } */
+
+        .card-highlight {
+            outline: 3px solid #4b7bec;
+            box-shadow: 0 0 20px rgba(0, 140, 255, 0.7);
+            transform: scale(1.03);
+            transition: 0.25s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">Websites</div>
+
+            <div class="project-list">
+                <div class="project-item">
+                    <div class="project-title">First Portfolio</div>
+                    <div class="project-subtitle">Basic Portfolio Website</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title">Second Portfolio</div>
+                    <div class="project-subtitle">A Better Take on a Portfolio Website</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title">Project three</div>
+                    <div class="project-subtitle">Dashboard UI</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main">
+            <header class="main-header">
+                <div class="main-title">My Planets</div>
+                <div class="main-actions">
+                    <button class="btn-secondary btn">Filter</button>
+                    <button class="btn">
+                        <span>＋</span>
+                        <span>New project</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Animated cards grid -->
+            <section class="projects-grid">
+                <article class="card__article">
+                    <img src="assests/imgs/p1.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">A New Beginning</span>
+                        <h2 class="card__title">Nova One</h2>
+                        <a href="https://vargavmishra.github.io/PortfolioONE/" target="_blank"
+                            class="card__button">Visit</a>
+                    </div>
+                </article>
+
+                <article class="card__article">
+                    <img src="assests/imgs/p2.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">Improved & Elevated</span>
+                        <h2 class="card__title">Aetherium II</h2>
+                        <a href="https://vargavmishra.github.io/SecondPortfolio/" class="card__button">Visit</a>
+                    </div>
+                </article>
+
+                <article class="card__article">
+                    <img src="assests/imgs/p3.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">Bojcin Forest, Serbia</span>
+                        <h2 class="card__title">Path Of Peace</h2>
+                        <a href="#" class="card__button">Read More</a>
+                    </div>
+                </article>
+
+                <article class="card__article">
+                    <img src="assests/imgs/p4.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">Creative Workspace</span>
+                        <h2 class="card__title">Portfolio Layout</h2>
+                        <a href="#" class="card__button">Open Project</a>
+                    </div>
+                </article>
+
+                <article class="card__article">
+                    <img src="assests/imgs/p5.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">Client Dashboard</span>
+                        <h2 class="card__title">Analytics UI</h2>
+                        <a href="#" class="card__button">View Case Study</a>
+                    </div>
+                </article>
+
+                <article class="card__article">
+                    <img src="assests/imgs/p6.jpg" alt="image" class="card__img">
+                    <div class="card__data">
+                        <span class="card__description">Next Big Thing</span>
+                        <h2 class="card__title">Upcoming Project</h2>
+                        <a href="#" class="card__button">Coming Soon</a>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll(".project-item");
+    const cards = document.querySelectorAll(".card__article");
+
+    items.forEach((item, index) => {
+        const card = cards[index];
+        if (!card) return; // if more items than cards, skip safely
+
+        // Hover = preview highlight
+        item.addEventListener("mouseenter", () => {
+            card.classList.add("card-highlight");
+        });
+
+        item.addEventListener("mouseleave", () => {
+            // Only remove if it's not the 'clicked' one
+            if (!item.classList.contains("active")) {
+                card.classList.remove("card-highlight");
+            }
+        });
+
+        // Click = lock highlight + active state
+        item.addEventListener("click", () => {
+            // remove from all sidebar items & cards
+            items.forEach(i => i.classList.remove("active"));
+            cards.forEach(c => c.classList.remove("card-highlight"));
+
+            // add to current
+            item.classList.add("active");
+            card.classList.add("card-highlight");
+        });
+    });
+});
+</script>
+
+</html>
