@@ -2334,6 +2334,97 @@ p {
     }
 }
 
+/* Work section responsive */
+
+/* ---------- WORK – MOBILE (≤768px) ---------- */
+@media (max-width: 1024px) {
+    .our-works {
+        height: auto;
+        min-height: 60vh;
+        padding: 40px 20px;
+        overflow: visible;
+    }
+
+    .inner-work {
+        top: 0;
+    }
+
+    .work-cards-container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+
+    }
+
+    .work-cards-container li {
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 20px 0;
+    }
+
+    .work-cards-container li:last-child {
+        border-bottom: none;
+    }
+
+    #row {
+        text-align: center;
+        width: 100%;
+        letter-spacing: 0px !important;
+        word-spacing: 14px !important;
+        margin: 10px 0;
+        z-index: 2 !important;
+        position: relative;
+    }
+
+    /* show marquee text even without hover on touch screens */
+    .marquee-container {
+        position: absolute !important;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        opacity: 0.4 !important;
+        z-index: 1 !important;
+        padding: 4rem;
+    }
+
+    .marquee-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* ---------- WORK – MOBILE (≤768px) ---------- */
+@media (max-width: 768px) {
+    .our-works {
+        padding: 30px 16px;
+    }
+
+    .work-cards-container {
+        text-align: left;
+    }
+
+    .work-cards-container li {
+        padding: 16px 0;
+    }
+
+    #row {
+        display: block;
+        width: 100%;
+        font-size: clamp(1.8rem, 10vw, 2.4rem);
+        text-align: center;
+        margin: 0;
+        letter-spacing: 0px !important;
+        word-spacing: 10px !important;
+    }
+
+    .marquee-text {
+        font-size: 0.8rem;
+    }
+
+    .marquee-text span {
+        padding: 4px 8px;
+    }
+}
 
 
 /* Scroll animations */
@@ -2394,4 +2485,3 @@ p {
         background-position: 50% 100%;
     }
 }
-
