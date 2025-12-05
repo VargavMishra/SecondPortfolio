@@ -1141,6 +1141,122 @@ p {
     }
 }
 
+/* -------------------------- Education SECTION ----------------------------------- */
+.edu-section {
+    width: 100%;
+    height: 100vh;
+    /* border: 2px solid white; */
+    padding: 10rem 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.cards-section {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 200px auto;
+    /* border: 2px solid green; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.cards {
+    display: grid;
+    margin-top: 3.5rem;
+    width: 100%;
+    height: 80%;
+    position: relative;
+    bottom: 3.5rem;
+    /* border: 2px solid white; */
+
+    >* {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+}
+
+.card {
+    width: 80rem;
+    height: 20rem;
+    background-color: red;
+    border-radius: 8px;
+    border: 2px solid red;
+    margin: auto;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    /* gap: 1rem; */
+    /* space between text & image */
+    padding: 2rem;
+    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+.card p {
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.textp {
+    font-size: 0.8rem;
+    /* display: flex; */
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    padding: 1rem;
+}
+
+.card-text {
+    /* border: 2px solid blue; */
+    width: 40rem;
+}
+
+.type {
+    /* border: 2px solid blue; */
+    width: 40rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 2rem;
+    padding-top: 0.8rem;
+}
+
+#yearp {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 2rem;
+    padding-top: 0.8rem;
+}
+
+
+.card-img {
+    border: 2px solid cyan;
+    width: 20rem;
+    height: 100%;
+
+}
+
+.card-img img {
+    border: 2px solid brown;
+    width: 20rem;
+    height: 100%;
+
+}
+
+.to-stay-card {
+    background-color: red;
+    border-radius: 8px;
+    width: auto;
+    height: 400px;
+}
+
+
+
 /* -------------------------- SKILLS SECTION ----------------------------------- */
 
 .skillsdiv {
@@ -1658,7 +1774,7 @@ p {
     opacity: 0.9;
 }
 
-.card {
+.social-card {
     width: fit-content;
     height: fit-content;
     display: flex;
