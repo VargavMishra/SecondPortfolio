@@ -176,34 +176,69 @@ function createMobileNav() {
 }
 // ===================== Education Section =====================
 
+gsap.registerPlugin(ScrollTrigger);
 
+const cardsWrappers = gsap.utils.toArray(".card-wrapper");
+const cards = gsap.utils.toArray(".card");
+const cardSection = document.getElementById("cardsection");
+
+cardsWrappers.forEach((wrapper, i) => {
+  const card = cards[i];
+  let scale = 1,
+    rotation = 0;
+  if (i !== cards.length - 1) {
+    scale = 0.9 + 0.025 * i;
+    rotation = -10;
+  }
+  gsap.to(card, {
+    scale: scale,
+    rotationX: rotation,
+    transformOrigin: "top center",
+    ease: "none",
+    scrollTrigger: {
+      trigger: wrapper,
+      start: "top " + (60 + 10 * i),
+      end: "bottom 550",
+      endTrigger: ".wrapper",
+      scrub: true,
+      pin: wrapper,
+      pinSpacing: false,
+      onUpdate: (self) => {
+        // Prevent pin from extending into next section
+        const maxScroll = cardSection.offsetHeight - 500;
+        if (self.getVelocity() > 0 && wrapper.offsetTop > maxScroll) {
+          self.disable();
+        }
+      },
+      id: i + 1,
+    },
+  });
+});
 
 // ===================== NAVBAR CLICK SHOULD ALWAYS WORK =====================
 
 // Select ALL nav links (desktop + mobile)
 const allNavLinks = document.querySelectorAll(
-    ".nav-list a, .mobile-nav-list a"
+  ".nav-list a, .mobile-nav-list a"
 );
 
-allNavLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
+allNavLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    // 1️⃣ Disable GSAP observer instantly so scroll unlocks
+    if (cardsObserver && cardsObserver.isEnabled) {
+      cardsObserver.disable();
+    }
 
-        // 1️⃣ Disable GSAP observer instantly so scroll unlocks
-        if (cardsObserver && cardsObserver.isEnabled) {
-            cardsObserver.disable();
-        }
+    // 2️⃣ Allow normal scrolling again
+    allowScroll = true;
 
-        // 2️⃣ Allow normal scrolling again
-        allowScroll = true;
+    // 3️⃣ Close mobile nav if open
+    document.body.classList.remove("menu-open");
 
-        // 3️⃣ Close mobile nav if open
-        document.body.classList.remove("menu-open");
-
-        // 4️⃣ Let the normal anchor navigation work naturally
-        // (No preventDefault on purpose)
-    });
+    // 4️⃣ Let the normal anchor navigation work naturally
+    // (No preventDefault on purpose)
+  });
 });
-
 
 // ===================== PHONE NUMBER HANDLER =====================
 // (Keep your existing phone number code)
