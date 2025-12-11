@@ -174,8 +174,8 @@ function createMobileNav() {
   // Add to body
   document.body.appendChild(mobileNav);
 }
-// ===================== Education Section =====================
 
+// ===================== Education Section =====================
 gsap.registerPlugin(ScrollTrigger);
 
 const cardsWrappers = gsap.utils.toArray(".card-wrapper");
